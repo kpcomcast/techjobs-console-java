@@ -51,7 +51,11 @@ public class JobData {
 
         // load data, if not already loaded
         loadData();
-        ArrayList<HashMap<String, String>> allJobsCopy = new ArrayList<>(allJobs);
+        ArrayList<HashMap<String, String>> allJobsCopy = new ArrayList<>();
+        for (HashMap job : allJobs) {
+            allJobsCopy.add((HashMap) job.clone());
+        }
+
         return allJobsCopy;
     }
 
