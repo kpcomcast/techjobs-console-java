@@ -8,6 +8,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -42,7 +43,7 @@ public class JobData {
                 values.add(aValue);
             }
         }
-
+        Collections.sort(values);
         return values;
     }
 
@@ -50,8 +51,8 @@ public class JobData {
 
         // load data, if not already loaded
         loadData();
-
-        return allJobs;
+        ArrayList<HashMap<String, String>> allJobsCopy = new ArrayList<>(allJobs);
+        return allJobsCopy;
     }
 
     /**
@@ -70,11 +71,13 @@ public class JobData {
         // load data, if not already loaded
         loadData();
 
+        value = value.toLowerCase();
         ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
 
         for (HashMap<String, String> row : allJobs) {
 
             String aValue = row.get(column);
+            aValue = aValue.toLowerCase();
 
             if (aValue.contains(value)) {
                 jobs.add(row);
@@ -92,20 +95,19 @@ public class JobData {
     public static ArrayList<HashMap<String, String>> findByValue(String searchTerm) {
         loadData();
 
+        searchTerm = searchTerm.toLowerCase();
         ArrayList<HashMap<String, String>> jobsResults = new ArrayList<>();
 
         for (HashMap<String, String> row : allJobs) {
             boolean containsTerm = false;
-            for (String column : row.keySet()) {
-                String aValue = row.get(column);
-                if (aValue.contains(searchTerm)) {
+            for (String column : row.values()) {
+                String lowerCase = column.toLowerCase();
+                if (lowerCase.contains(searchTerm)) {
                     containsTerm = true;
-                } else {
-                    containsTerm = false;
                 }
-                if (containsTerm) {
-                    jobsResults.add(row);
-                }
+            }
+            if (containsTerm) {
+                jobsResults.add(row);
             }
         }
         return jobsResults;
