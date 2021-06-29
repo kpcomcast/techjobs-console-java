@@ -119,10 +119,6 @@ public class TechJobs {
                     System.out.println(r + ": " + q.get(r));
                 }
                 System.out.println("*****");
-//                if (someJobs.indexOf(q) == someJobs.size() - 1) {
-//                } else {
-//                System.out.println("*****\n");
-//                }
             }
         }
     }
