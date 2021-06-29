@@ -114,11 +114,15 @@ public class TechJobs {
             System.out.println("No jobs found.");
         } else {
             for (HashMap<String, String> q : someJobs) {
-                System.out.println("*****");
+                System.out.println("\n*****");
                 for (String r : q.keySet()) {
                     System.out.println(r + ": " + q.get(r));
                 }
-                System.out.println("*****\n");
+                System.out.println("*****");
+//                if (someJobs.indexOf(q) == someJobs.size() - 1) {
+//                } else {
+//                System.out.println("*****\n");
+//                }
             }
         }
     }
