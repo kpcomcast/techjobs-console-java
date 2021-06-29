@@ -85,6 +85,33 @@ public class JobData {
     }
 
     /**
+     * Create method findByValue
+     * Allow users to search a given column for a given string.
+     */
+
+    public static ArrayList<HashMap<String, String>> findByValue(String searchTerm) {
+        loadData();
+
+        ArrayList<HashMap<String, String>> jobsResults = new ArrayList<>();
+
+        for (HashMap<String, String> row : allJobs) {
+            boolean containsTerm = false;
+            for (String column : row.keySet()) {
+                String aValue = row.get(column);
+                if (aValue.contains(searchTerm)) {
+                    containsTerm = true;
+                } else {
+                    containsTerm = false;
+                }
+                if (containsTerm) {
+                    jobsResults.add(row);
+                }
+            }
+        }
+        return jobsResults;
+    }
+
+    /**
      * Read in data from a CSV file and store it in a list
      */
     private static void loadData() {
