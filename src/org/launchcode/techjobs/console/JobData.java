@@ -55,11 +55,7 @@ public class JobData {
         for (HashMap job : allJobs) {
             allJobsCopy.add((HashMap) job.clone());
         }
-        System.out.println(allJobs.get(5).get("name"));
-        System.out.println(allJobsCopy.get(5).get("name"));
-        allJobs.get(5).put("name", "this should change alljobs, but not the clone");
-        System.out.println(allJobs.get(5).get("name"));
-        System.out.println(allJobsCopy.get(5).get("name"));
+
         return allJobsCopy;
     }
 
